@@ -30,10 +30,11 @@ class ArmHandler:
 
     def pickup_block_from(self, x, y, z=20) -> bool:
         """
+        Pickup block from the given coordinates, z default for small cube
         :param x:
         :param y:
         :param z:
-        :return: Returns false if out of bounds, else True
+        :return: Returns false if out of bounds
         """
         if not (215 < x < 300) or y < 0:
             print("Out of RANGE")
