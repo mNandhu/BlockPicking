@@ -6,4 +6,3 @@ requests~=2.32.3
 setuptools~=72.1.0
 numpy
 xArm-Python-SDK
-matplotlib
