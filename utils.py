@@ -5,7 +5,8 @@ from time import sleep
 class ArmHandler:
     def __init__(self):
         """
-        Initialize the arm (Try setting your ethernet ip to 192.168.1.225)
+        Initialize the arm
+        (Try setting ethernet ip to 192.168.1.225)
         """
         self.arm = XArmAPI('192.168.1.155')
         self.arm.motion_enable(enable=True)
@@ -27,6 +28,15 @@ class ArmHandler:
         self.arm.set_suction_cup(False)
         self.arm.set_position(x=x, y=y, z=z + 10, roll=180, pitch=0, yaw=0)
         self.arm.move_gohome()
+
+    def pickup_and_wait(self):
+        """
+        Starts the suction cup at home position, and waits for 4 seconds
+        :return:
+        """
+        self.arm.move_gohome()
+        self.arm.set_suction_cup(True)
+        sleep(4)
 
     def pickup_block_from(self, x, y, z=20) -> bool:
         """
