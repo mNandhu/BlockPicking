@@ -6,7 +6,7 @@ class ArmHandler:
     def __init__(self):
         """
         Initialize the arm
-        (Try setting ethernet ip to 192.168.1.225)
+        (Try setting laptop's ethernet ipv4: 192.168.1.225 & subnet mask: 255.255.255.0)
         """
         self.arm = XArmAPI('192.168.1.155')
         self.arm.motion_enable(enable=True)
