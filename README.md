@@ -19,6 +19,10 @@ Conversion of Pixel Coordinates to Robot Coordinates is done by using Regression
 
 ### Using Linear Regression - PseudoInverse
 
+A set of points are taken, by using the robot to place the block randomly within a range of camera.
+Then, the pixel coordinates of that point and the robot coordinates are taken.
+Using those points, we find the transformation matrix from Pixel to Robot coordinates.
+
 ![Plot showing Px vs Rx and Py vs Ry](assets/linear_regression_plt.png)
 Note: The scales for X map and Y map are different.
 
