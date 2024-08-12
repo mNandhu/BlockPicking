@@ -41,12 +41,11 @@ P_y
 \end{bmatrix}
 $$
 
-We find the transformation by,
 $$ 
-R*P^{\dagger} = w 
+R * P^{\dagger} = w 
 $$
 
-where $ {\dagger} $ is the PseudoInverse
+where, $${\dagger}$$ is the PseudoInverse
 ### Using Multivariate Regression to account for rotation
 
 $$
@@ -66,7 +65,11 @@ P_{1_y} & P_{2_y} & \cdots & P_{n_y} \\
 1 & 1 & \cdots & 1
 \end{bmatrix}
 $$
-$$ R*P^{\dagger} = w $$ 
+
+$$ 
+R * P^{\dagger} = w 
+$$
+
 ## Installation
 
 ```pip install -r requirements.txt```
