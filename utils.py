@@ -3,12 +3,12 @@ from time import sleep
 
 
 class ArmHandler:
-    def __init__(self):
+    def __init__(self, ip_port='192.168.1.155'):
         """
         Initialize the arm
         (Try setting laptop's ethernet ipv4: 192.168.1.225 & subnet mask: 255.255.255.0)
         """
-        self.arm = XArmAPI('192.168.1.155')
+        self.arm = XArmAPI(ip_port)
         self.arm.motion_enable(enable=True)
         self.arm.set_mode(0)
         self.arm.set_state(0)
@@ -23,7 +23,7 @@ class ArmHandler:
         :param z:
         :return:
         """
-        self.arm.move_gohome()
+        # self.arm.move_gohome()
         self.arm.set_position(x, y, z, roll=180, pitch=0, yaw=0)
         self.arm.set_suction_cup(False)
         self.arm.set_position(x=x, y=y, z=z + 10, roll=180, pitch=0, yaw=0)
@@ -50,8 +50,8 @@ class ArmHandler:
             print("Out of RANGE")
             return False
 
+        self.arm.set_position(x=x, y=y, z=z + 40, roll=180, pitch=0, yaw=0)
         self.arm.set_suction_cup(True)
-        self.arm.set_position(x=x, y=y, z=z + 10, roll=180, pitch=0, yaw=0)
         sleep(0.5)
         self.arm.set_position(x=x, y=y, z=z, roll=180, pitch=0, yaw=0)
         sleep(1)
