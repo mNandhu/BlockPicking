@@ -42,7 +42,9 @@ P_y
 $$
 
 We find the transformation by,
-$$ R*P^{\dagger} = w $$
+$$ 
+R*P^{\dagger} = w 
+$$
 
 where $ {\dagger} $ is the PseudoInverse
 ### Using Multivariate Regression to account for rotation
