@@ -24,8 +24,9 @@ Then, the pixel coordinates of that point and the robot coordinates are taken.
 Using those points, we find the transformation matrix from Pixel to Robot coordinates.
 
 ![Plot showing Px vs Rx and Py vs Ry](assets/linear_regression_plt.png)
-Note: The scales for X map and Y map are different.
 
+
+Assuming only rotation of the coordinate frame.
 $$
 \begin{bmatrix}
 R_x \\
@@ -41,11 +42,12 @@ P_y
 \end{bmatrix}
 $$
 
+We find the transformation by,
 $$ 
-R * P^{\dagger} = w 
+R*P^{\dagger} = w 
 $$
 
-where, $${\dagger}$$ is the PseudoInverse
+where $ {\dagger} $ is the PseudoInverse
 ### Using Multivariate Regression to account for rotation
 
 $$
@@ -65,11 +67,9 @@ P_{1_y} & P_{2_y} & \cdots & P_{n_y} \\
 1 & 1 & \cdots & 1
 \end{bmatrix}
 $$
+$$ R*P^{\dagger} = w $$ 
 
-$$ 
-R * P^{\dagger} = w 
-$$
-
+where $P$ is the homogeneous transformation matrix for 2D
 ## Installation
 
 ```pip install -r requirements.txt```
