@@ -3,12 +3,13 @@ from time import sleep
 
 
 class ArmHandler:
-    def __init__(self, ip_port='192.168.1.155'):
+    def __init__(self,ip = '192.168.1.155'):
         """
         Initialize the arm
-        (Try setting laptop's ethernet ipv4: 192.168.1.225 & subnet mask: 255.255.255.0)
+        (Try setting ethernet ip in your laptop (DHCP->Manual)to 192.168.1.225)
         """
-        self.arm = XArmAPI(ip_port)
+
+        self.arm = XArmAPI(ip)
         self.arm.motion_enable(enable=True)
         self.arm.set_mode(0)
         self.arm.set_state(0)
@@ -26,7 +27,7 @@ class ArmHandler:
         # self.arm.move_gohome()
         self.arm.set_position(x, y, z, roll=180, pitch=0, yaw=0)
         self.arm.set_suction_cup(False)
-        self.arm.set_position(x=x, y=y, z=z + 10, roll=180, pitch=0, yaw=0)
+        self.arm.set_position(x=x, y=y, z=z + 20, roll=180, pitch=0, yaw=0)
         self.arm.move_gohome()
 
     def pickup_and_wait(self):
@@ -46,19 +47,23 @@ class ArmHandler:
         :param z:
         :return: Returns false if out of bounds
         """
-        if not (215 < x < 300) or y < 0:
+        if not self.is_in_range(x,y):
             print("Out of RANGE")
             return False
 
-        self.arm.set_position(x=x, y=y, z=z + 40, roll=180, pitch=0, yaw=0)
+        self.arm.set_position(x=x, y=y, z=z + 10, roll=180, pitch=0, yaw=0)
         self.arm.set_suction_cup(True)
         sleep(0.5)
         self.arm.set_position(x=x, y=y, z=z, roll=180, pitch=0, yaw=0)
         sleep(1)
-        self.arm.set_position(x=x, y=y, z=z + 40, roll=180, pitch=0, yaw=0)
-        self.arm.move_gohome()
+        self.arm.set_position(x=x, y=y, z=z + 110, roll=180, pitch=0, yaw=0)
+        # self.arm.move_gohome()
 
         return True
+
+    @staticmethod
+    def is_in_range(x , y):
+        return (215 < x < 300) and y >= 0
 
     def disconnect(self):
         self.arm.set_suction_cup(False)
